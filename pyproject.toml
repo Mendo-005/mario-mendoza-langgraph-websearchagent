@@ -1,0 +1,22 @@
+[project]
+name = "mario-mendoza-langgraph-websearchagent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Mendo-05", email = "mendozachaparro73@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "langchain>=1.4.5",
+    "langchain-aws>=1.8.2",
+    "langgraph>=1.2.15",
+]
+
+[project.scripts]
+mario-mendoza-langgraph-websearchagent = "mario_mendoza_langgraph_websearchagent:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
