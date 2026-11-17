@@ -1,8 +1,19 @@
 :root {
   color-scheme: light;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  color: #202431;
-  background: #f6f7fb;
+  --navy: #14213d;
+  --page: #eceff3;
+  --panel: #ffffff;
+  --ink: #1b2330;
+  --muted: #5b6675;
+  --line: #d9dee5;
+  --tint: #f3f5f8;
+  --accent: #2c5282;
+  --accent-hover: #213f66;
+  --error: #8f2d2d;
+
+  font-family: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -15,201 +26,258 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background:
-    radial-gradient(ellipse at 50% 22%, rgba(226, 231, 255, 0.6), transparent 40%),
-    #f6f7fb;
+  background: var(--page);
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  width: min(100% - 48px, 920px);
-  min-height: 100vh;
-  margin: 0 auto;
-}
-
+/* Cabecera */
 .topbar {
+  background: var(--navy);
+  color: #fff;
+}
+
+.topbar-inner {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  min-height: 76px;
-  border-bottom: 1px solid #e8eaf1;
+  gap: 16px;
+  width: min(100% - 48px, 860px);
+  min-height: 60px;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: -0.6px;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
   text-decoration: none;
 }
 
-.brand-mark {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  place-items: center;
-  border-radius: 10px;
-  background: #6258e8;
-  color: white;
-  font-size: 15px;
+.topbar-note {
+  color: #b8c3d6;
+  font-size: 13px;
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #667085;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #36b37e;
-  box-shadow: 0 0 0 3px #36b37e20;
+/* Panel central */
+.app {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 860px);
+  min-height: calc(100vh - 60px);
+  margin: 0 auto;
+  border-right: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  background: var(--panel);
 }
 
 .conversation {
   display: flex;
   flex: 1;
   flex-direction: column;
-  width: min(100%, 700px);
-  margin: 0 auto;
-  padding: clamp(72px, 15vh, 150px) 0 40px;
+  padding: 40px 40px 32px;
 }
 
 .intro {
-  margin-bottom: 34px;
-}
-
-.eyebrow {
-  color: #6258e8;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 h1 {
-  margin: 12px 0 10px;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  font-size: clamp(32px, 6vw, 46px);
-  font-weight: 800;
-  letter-spacing: -2px;
-  line-height: 1.14;
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(26px, 4.5vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
 }
 
 .intro p {
-  max-width: 560px;
+  max-width: 600px;
   margin: 0;
-  color: #747b8c;
+  color: var(--muted);
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 28px 0 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.facts > div {
+  padding: 16px 20px 16px 0;
+}
+
+.facts > div + div {
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+}
+
+.facts dt {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Cuando hay conversación, se compacta la introducción */
+.conversation:has(.message) .intro p,
+.conversation:has(.message) .facts {
+  display: none;
+}
+
+.conversation:has(.message) h1 {
+  font-size: 20px;
+}
+
+/* Mensajes */
 .messages {
   display: grid;
   gap: 16px;
 }
 
+.messages:not(:empty) {
+  margin-top: 24px;
+}
+
 .message {
-  width: fit-content;
-  max-width: min(90%, 600px);
-  padding: 14px 17px;
-  border: 1px solid #e9eaf1;
-  border-radius: 16px 16px 16px 5px;
-  background: #fff;
-  box-shadow: 0 5px 18px #22243a08;
-  font-size: 14px;
+  padding: 14px 18px 16px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  background: var(--panel);
+  font-size: 15px;
   line-height: 1.7;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
 
+.message::before {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  content: "Websearch";
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .message.user {
   justify-self: end;
-  border-color: #6258e8;
-  border-radius: 16px 16px 5px 16px;
-  background: #6258e8;
-  color: #fff;
+  width: fit-content;
+  max-width: 85%;
+  border-color: var(--line);
+  border-left-width: 1px;
+  background: var(--tint);
+}
+
+.message.user::before {
+  content: "Tú";
 }
 
 .message.error {
-  border-color: #f1c7c7;
-  color: #a33131;
+  border-color: #e3c4c4;
+  border-left-color: var(--error);
+  background: #fbf5f5;
+  color: var(--error);
 }
 
+.message.error::before {
+  color: var(--error);
+  content: "Error";
+}
+
+/* Entrada */
 .composer {
   position: sticky;
   bottom: 0;
-  width: min(100%, 700px);
-  margin: 0 auto;
-  padding: 14px 0 22px;
-  background: linear-gradient(transparent, #f6f7fb 14%);
+  padding: 16px 40px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--tint);
 }
 
 .composer textarea {
   display: block;
   width: 100%;
-  min-height: 62px;
-  max-height: 180px;
-  padding: 19px 110px 18px 20px;
+  min-height: 72px;
+  max-height: 200px;
+  padding: 12px 14px;
   resize: vertical;
-  border: 1px solid #e4e6ee;
-  border-radius: 16px;
-  outline: none;
+  border: 1px solid #c5ccd6;
+  border-radius: 4px;
   background: #fff;
-  box-shadow: 0 10px 30px #22243a0d;
-  color: #202431;
+  color: var(--ink);
   font: inherit;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-.composer textarea:focus {
-  border-color: #918af0;
-  box-shadow: 0 0 0 3px #6258e81b;
+.composer textarea::placeholder {
+  color: #8a929c;
+}
+
+.composer textarea:focus-visible,
+.composer button:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.brand:focus-visible {
+  outline-color: #fff;
+}
+
+.composer textarea:focus-visible {
+  border-color: var(--accent);
+  outline-offset: 0;
+}
+
+.composer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.composer-row p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .composer button {
-  position: absolute;
-  top: 26px;
-  right: 9px;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
+  flex-shrink: 0;
   min-height: 38px;
-  padding: 0 13px;
+  padding: 0 22px;
   border: 0;
-  border-radius: 10px;
-  background: #6258e8;
-  color: white;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
   cursor: pointer;
   font: inherit;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .composer button:hover {
-  background: #5147d0;
+  background: var(--accent-hover);
 }
 
 .composer button:disabled {
   cursor: wait;
-  opacity: 0.65;
-}
-
-.composer > p {
-  margin: 10px 0 0;
-  color: #9096a5;
-  font-size: 11px;
-  text-align: center;
+  opacity: 0.6;
 }
 
 .sr-only {
@@ -222,20 +290,51 @@ h1 {
   clip-path: inset(50%);
 }
 
-@media (max-width: 560px) {
-  .app {
-    width: min(100% - 32px, 920px);
+@media (max-width: 640px) {
+  .topbar-inner {
+    width: min(100% - 32px, 860px);
   }
 
-  .topbar {
-    min-height: 64px;
+  .topbar-note {
+    display: none;
+  }
+
+  .app {
+    border-right: 0;
+    border-left: 0;
   }
 
   .conversation {
-    padding-top: 72px;
+    padding: 28px 16px 24px;
   }
 
-  .message {
-    max-width: 96%;
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .facts > div,
+  .facts > div + div {
+    padding: 12px 0;
+    border-left: 0;
+  }
+
+  .facts > div + div {
+    border-top: 1px solid var(--line);
+  }
+
+  .message.user {
+    max-width: 95%;
+  }
+
+  .composer {
+    padding: 14px 16px 16px;
+  }
+
+  .composer-row p {
+    display: none;
+  }
+
+  .composer button {
+    width: 100%;
   }
 }

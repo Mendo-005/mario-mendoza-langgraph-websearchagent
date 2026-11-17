@@ -10,10 +10,10 @@ from urllib.parse import urlsplit
 from langchain.messages import HumanMessage
 
 if __package__:
-    from .Websearch.agent import create_agent
+    from .websearch.agent import create_agent
 else:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from mario_mendoza_langgraph_websearchagent.Websearch.agent import create_agent
+    from mario_mendoza_langgraph_websearchagent.websearch.agent import create_agent
 
 WEB_DIRECTORY = Path(__file__).with_name("web")
 MAX_MESSAGE_LENGTH = 4_000

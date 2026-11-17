@@ -11,6 +11,14 @@ function addMessage(text, role) {
   message.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
+// Intro envía el mensaje; Mayús + Intro inserta un salto de línea
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+    event.preventDefault();
+    form.requestSubmit();
+  }
+});
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const question = input.value.trim();

@@ -3,39 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f6f7fb">
-    <title>Websearch · Asistente web</title>
+    <meta name="theme-color" content="#14213d">
+    <title>Websearch · Asistente de búsqueda web</title>
     <link rel="stylesheet" href="/styles.css">
     <script src="/app.js" defer></script>
   </head>
   <body>
-    <main class="app">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="Websearch, inicio">
-          <span class="brand-mark" aria-hidden="true">W</span>
-          <span>websearch</span>
-        </a>
-        <span class="status"><span class="status-dot"></span> Búsqueda web activa</span>
-      </header>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/">Websearch</a>
+        <span class="topbar-note">Asistente de búsqueda web</span>
+      </div>
+    </header>
 
+    <main class="app">
       <section class="conversation" aria-labelledby="heading">
         <div class="intro">
-          <span class="eyebrow">Tu asistente de investigación</span>
-          <h1 id="heading">¿Qué quieres descubrir?</h1>
-          <p>Pregunta lo que quieras. Buscaré en la web cuando haga falta y te responderé con fuentes.</p>
+          <h1 id="heading">¿Qué necesitas consultar?</h1>
+          <p>Formula tu pregunta con el mayor detalle posible. El asistente busca en la web cuando hace falta y responde indicando las fuentes.</p>
+          <dl class="facts">
+            <div>
+              <dt>Búsqueda</dt>
+              <dd>Consulta la web para datos recientes o que no conoce.</dd>
+            </div>
+            <div>
+              <dt>Fuentes</dt>
+              <dd>Indica en la respuesta de dónde procede la información.</dd>
+            </div>
+            <div>
+              <dt>Verificación</dt>
+              <dd>Conviene contrastar los datos importantes en las fuentes.</dd>
+            </div>
+          </dl>
         </div>
         <div id="messages" class="messages" aria-live="polite" aria-relevant="additions"></div>
       </section>
 
       <form id="chat-form" class="composer">
         <label class="sr-only" for="question">Escribe tu pregunta</label>
-        <textarea id="question" name="question" rows="1" maxlength="4000"
-          placeholder="Escribe tu pregunta..." required></textarea>
-        <button id="submit" type="submit" aria-label="Enviar pregunta">
-          <span>Enviar</span>
-          <span aria-hidden="true">↗</span>
-        </button>
-        <p>Las respuestas generadas por IA pueden contener errores. Comprueba las fuentes.</p>
+        <textarea id="question" name="question" rows="2" maxlength="4000"
+          placeholder="Escribe tu pregunta" required></textarea>
+        <div class="composer-row">
+          <p>Intro para enviar · Mayús + Intro para salto de línea</p>
+          <button id="submit" type="submit">
+            <span>Enviar</span>
+          </button>
+        </div>
       </form>
     </main>
   </body>
