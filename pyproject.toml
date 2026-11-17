@@ -1,25 +1,22 @@
 [project]
 name = "mario-mendoza-langgraph-websearchagent"
 version = "0.1.0"
-description = "Add your description here"
+description = "Web app for a LangGraph agent with Tavily search"
 readme = "README.md"
 authors = [
     { name = "Mendo-05", email = "mendozachaparro73@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "anthropic>=2.3.0",
-    "dotenv>=0.9.9",
-    "langchain>=1.4.5",
-    "langchain-aws>=1.8.2",
-    "langchain-community>=0.4.2",
-    "langchain-tavily>=0.2.18",
-    "langgraph>=1.2.15",
-    "pandas>=3.1.0",
+    "langchain>=1.0",
+    "langchain-anthropic",
+    "langchain-tavily",
+    "langgraph",
+    "python-dotenv",
 ]
 
 [project.scripts]
-mario-mendoza-langgraph-websearchagent = "mario_mendoza_langgraph_websearchagent:main"
+mario-mendoza-langgraph-websearchagent = "mario_mendoza_langgraph_websearchagent.server:main"
 
 [build-system]
 requires = ["uv_build>=0.12.10,<0.13.0"]

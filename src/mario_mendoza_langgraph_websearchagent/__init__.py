@@ -1,2 +1,4 @@
 def main() -> None:
-    print("Hello from mario-mendoza-langgraph-websearchagent!")
+    from .server import main as run_server
+
+    run_server()

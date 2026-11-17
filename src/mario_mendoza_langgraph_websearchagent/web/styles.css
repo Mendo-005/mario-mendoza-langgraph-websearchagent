@@ -1,0 +1,241 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #202431;
+  background: #f6f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 22%, rgba(226, 231, 255, 0.6), transparent 40%),
+    #f6f7fb;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 48px, 920px);
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  border-bottom: 1px solid #e8eaf1;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 10px;
+  background: #6258e8;
+  color: white;
+  font-size: 15px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #36b37e;
+  box-shadow: 0 0 0 3px #36b37e20;
+}
+
+.conversation {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: min(100%, 700px);
+  margin: 0 auto;
+  padding: clamp(72px, 15vh, 150px) 0 40px;
+}
+
+.intro {
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  color: #6258e8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 12px 0 10px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(32px, 6vw, 46px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.14;
+}
+
+.intro p {
+  max-width: 560px;
+  margin: 0;
+  color: #747b8c;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.messages {
+  display: grid;
+  gap: 16px;
+}
+
+.message {
+  width: fit-content;
+  max-width: min(90%, 600px);
+  padding: 14px 17px;
+  border: 1px solid #e9eaf1;
+  border-radius: 16px 16px 16px 5px;
+  background: #fff;
+  box-shadow: 0 5px 18px #22243a08;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.message.user {
+  justify-self: end;
+  border-color: #6258e8;
+  border-radius: 16px 16px 5px 16px;
+  background: #6258e8;
+  color: #fff;
+}
+
+.message.error {
+  border-color: #f1c7c7;
+  color: #a33131;
+}
+
+.composer {
+  position: sticky;
+  bottom: 0;
+  width: min(100%, 700px);
+  margin: 0 auto;
+  padding: 14px 0 22px;
+  background: linear-gradient(transparent, #f6f7fb 14%);
+}
+
+.composer textarea {
+  display: block;
+  width: 100%;
+  min-height: 62px;
+  max-height: 180px;
+  padding: 19px 110px 18px 20px;
+  resize: vertical;
+  border: 1px solid #e4e6ee;
+  border-radius: 16px;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 10px 30px #22243a0d;
+  color: #202431;
+  font: inherit;
+  font-size: 14px;
+}
+
+.composer textarea:focus {
+  border-color: #918af0;
+  box-shadow: 0 0 0 3px #6258e81b;
+}
+
+.composer button {
+  position: absolute;
+  top: 26px;
+  right: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 10px;
+  background: #6258e8;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.composer button:hover {
+  background: #5147d0;
+}
+
+.composer button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.composer > p {
+  margin: 10px 0 0;
+  color: #9096a5;
+  font-size: 11px;
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 560px) {
+  .app {
+    width: min(100% - 32px, 920px);
+  }
+
+  .topbar {
+    min-height: 64px;
+  }
+
+  .conversation {
+    padding-top: 72px;
+  }
+
+  .message {
+    max-width: 96%;
+  }
+}

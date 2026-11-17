@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <title>Websearch · Asistente web</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Websearch, inicio">
+          <span class="brand-mark" aria-hidden="true">W</span>
+          <span>websearch</span>
+        </a>
+        <span class="status"><span class="status-dot"></span> Búsqueda web activa</span>
+      </header>
+
+      <section class="conversation" aria-labelledby="heading">
+        <div class="intro">
+          <span class="eyebrow">Tu asistente de investigación</span>
+          <h1 id="heading">¿Qué quieres descubrir?</h1>
+          <p>Pregunta lo que quieras. Buscaré en la web cuando haga falta y te responderé con fuentes.</p>
+        </div>
+        <div id="messages" class="messages" aria-live="polite" aria-relevant="additions"></div>
+      </section>
+
+      <form id="chat-form" class="composer">
+        <label class="sr-only" for="question">Escribe tu pregunta</label>
+        <textarea id="question" name="question" rows="1" maxlength="4000"
+          placeholder="Escribe tu pregunta..." required></textarea>
+        <button id="submit" type="submit" aria-label="Enviar pregunta">
+          <span>Enviar</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+        <p>Las respuestas generadas por IA pueden contener errores. Comprueba las fuentes.</p>
+      </form>
+    </main>
+  </body>
+</html>
